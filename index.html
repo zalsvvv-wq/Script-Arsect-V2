@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Script Store</title>
+
+<style>
+/* =====================
+   BODY
+===================== */
+body{
+  margin:0;
+  padding:25px;
+  font-family:Segoe UI,sans-serif;
+  background:#0a0a0a;
+  color:white;
+}
+
+/* =====================
+   BOX TOKO
+===================== */
+.store-box{
+  text-align:center;
+  padding:25px;
+  border-radius:16px;
+  margin-bottom:35px;
+  background:#151515;
+  box-shadow:0 0 25px cyan;
+}
+
+/* =====================
+   JUDUL KATEGORI NEON
+===================== */
+.category-title{
+  margin:35px 0 15px;
+  text-transform:uppercase;
+  letter-spacing:2px;
+
+  text-shadow:
+    0 0 5px var(--glow),
+    0 0 10px var(--glow),
+    0 0 20px var(--glow),
+    0 0 40px var(--glow);
+}
+
+/* =====================
+   GRID
+===================== */
+.container{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:18px;
+}
+
+/* =====================
+   CARD (GLOW + MELING)
+===================== */
+.card{
+  padding:18px;
+  border-radius:14px;
+  position:relative;
+  overflow:hidden;
+  cursor:pointer;
+
+  border:1px solid rgba(255,255,255,.1);
+
+  animation: glowPulse 2.5s infinite alternate;
+
+  transition:.25s;
+}
+
+/* glow berdenyut */
+@keyframes glowPulse{
+  from{ box-shadow:0 0 8px var(--glow); }
+  to{ box-shadow:0 0 25px var(--glow); }
+}
+
+/* hover */
+.card:hover{
+  transform:translateY(-6px);
+}
+
+/* shine effect */
+.card::after{
+  content:"";
+  position:absolute;
+  top:0;
+  left:-120%;
+  width:60%;
+  height:100%;
+  background:linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,.6),
+    transparent
+  );
+  transform:skewX(-20deg);
+}
+
+.card:active::after{
+  animation:shine .6s ease;
+}
+
+@keyframes shine{
+  from{ left:-120%; }
+  to{ left:130%; }
+}
+
+/* =====================
+   BUTTON
+===================== */
+.btns{
+  display:flex;
+  gap:10px;
+  margin-top:12px;
+}
+
+.btn{
+  flex:1;
+  padding:8px;
+  border-radius:8px;
+  text-align:center;
+  text-decoration:none;
+  font-weight:bold;
+  color:white;
+}
+
+.btn1{ background:#00c853; }
+.btn2{ background:#2979ff; }
+
+</style>
+</head>
+
+<body>
+
+<!-- =====================
+   BOX TOKO
+===================== -->
+<div class="store-box">
+  <h1 id="storeName"></h1>
+  <p id="storeDesc"></p>
+</div>
+
+<h2 id="freeTitle" class="category-title"></h2>
+<div id="freeList" class="container"></div>
+
+<h2 id="premiumTitle" class="category-title"></h2>
+<div id="premiumList" class="container"></div>
+
+
+
+<script>
+/* =================================================
+   🔥 EDIT SEMUA DI SINI SAJA
+================================================= */
+
+/* ===== TOKO ===== */
+const store = {
+  name: "RajaPekob Store",
+  desc: "Tempat Script Gratis & Premium Sultan 🔥"
+};
+
+
+/* ===== WARNA GLOW JUDUL ===== */
+const categoryGlow = {
+  free: "#00ff88",
+  premium: "gold"
+};
+
+
+/* ===== LIST SCRIPT ===== */
+const scripts = [
+
+  {
+    type:"free",
+    title:"Auto Farm",
+    desc:"Farm otomatis cepat",
+    color:"#1b1b1b",
+    glow:"#00ffcc",
+    btn1:"Download",
+    link1:"#",
+    btn2:"Guide",
+    link2:"#"
+  },
+
+  {
+    type:"free",
+    title:"Auto BP",
+    desc:"Ambil BP otomatis",
+    color:"#102a43",
+    glow:"#00ffff",
+    btn1:"Download",
+    link1:"#",
+    btn2:"Info",
+    link2:"#"
+  },
+
+  {
+    type:"premium",
+    title:"Ultra Bot Pro",
+    desc:"Bot sultan premium only",
+    color:"#2a0f0f",
+    glow:"gold",
+    btn1:"Buy",
+    link1:"#",
